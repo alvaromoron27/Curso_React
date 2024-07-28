@@ -1,0 +1,69 @@
+.tw-followCard{
+    display: flex;
+    background-color: black;
+    height: 60px;
+    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    border-radius: 18px;
+}
+
+.tw-followCard:hover{
+    background-color: rgb(26, 26, 26);
+}
+
+.tw-followCard-header{
+    display: flex;
+    color: white;
+    width: 60%;
+}
+
+.tw-followCard-header-avatar{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.tw-followCard-header-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.tw-followCard-header-info strong,
+.tw-followCard-header-info .tw-followCard-header-info-user {
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Oculta el texto que se desborda del contenedor */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos al final del texto que se corta */
+}
+
+.tw-followCard-aside{
+    width: 25%;
+}
+
+.tw-followCard-aside .tw-followCard-aside-buttonFollow{
+    background-color: white;
+    border: 0px;
+    width: 75px;
+    height: 30px;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tw-followCard-aside .tw-followCard-aside-buttonFollow:hover{
+    background-color: rgb(233, 233, 233);
+}
+
+.tw-followCard-aside .tw-followCard-aside-buttonFollow.followTrue{
+    background-color: rgb(87, 188, 255);
+    color: white;
+}
+
+.tw-followCard-header-info-user{
+    color: rgb(182, 182, 182);
+}
