@@ -1,0 +1,93 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgb(103, 121, 0);
+    border-radius: 20px;
+    box-shadow: 0px 4px 29px rgba(103, 121, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.board:hover {
+    box-shadow: 0px 4px 69px rgba(103, 121, 0, 0.6);
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    width: 167px; /* Tamaño fijo del box */
+    height: 167px;
+}
+
+/* Esquina superior izquierda */
+.box:nth-child(1) {
+    border-right: 1px solid rgb(103, 121, 0);
+    border-bottom: 1px solid rgb(103, 121, 0);
+    border-top-left-radius: 20px;
+    /* Radio de borde superior izquierdo */
+}
+
+/* Esquina superior central */
+.box:nth-child(2) {
+    border-right: 1px solid rgb(103, 121, 0);
+    border-left: 1px solid rgb(103, 121, 0);
+    border-bottom: 1px solid rgb(103, 121, 0);
+}
+
+/* Esquina superior derecha */
+.box:nth-child(3) {
+    border-left: 1px solid rgb(103, 121, 0);
+    border-bottom: 1px solid rgb(103, 121, 0);
+    border-top-right-radius: 20px;
+    /* Radio de borde superior derecho */
+}
+
+/* Borde central izquierda */
+.box:nth-child(4) {
+    border-top: 1px solid rgb(103, 121, 0);
+    border-right: 1px solid rgb(103, 121, 0);
+    border-bottom: 1px solid rgb(103, 121, 0);
+}
+
+/* Centro */
+.box:nth-child(5) {
+    border: 1px solid rgb(103, 121, 0);
+}
+
+/* Borde central derecha */
+.box:nth-child(6) {
+    border-top: 1px solid rgb(103, 121, 0);
+    border-left: 1px solid rgb(103, 121, 0);
+    border-bottom: 1px solid rgb(103, 121, 0);
+}
+
+/* Esquina inferior izquierda */
+.box:nth-child(7) {
+    border-top: 1px solid rgb(103, 121, 0);
+    border-right: 1px solid rgb(103, 121, 0);
+    border-bottom-left-radius: 20px;
+    /* Radio de borde inferior izquierdo */
+}
+
+/* Esquina inferior central */
+.box:nth-child(8) {
+    border-top: 1px solid rgb(103, 121, 0);
+    border-right: 1px solid rgb(103, 121, 0);
+    border-left: 1px solid rgb(103, 121, 0);
+}
+
+/* Esquina inferior derecha */
+.box:nth-child(9) {
+    border-top: 1px solid rgb(103, 121, 0);
+    border-left: 1px solid rgb(103, 121, 0);
+    border-bottom-right-radius: 20px;
+    /* Radio de borde inferior derecho */
+}
+
+.box:hover {
+    background-color: rgb(20, 20, 20);
+}
