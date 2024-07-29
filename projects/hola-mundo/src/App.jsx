@@ -1,20 +1,40 @@
 import { TwitterFollowCard } from "./TwitterFollowCard";
 
 export function App() {
+
+  const formatUsername = (userName) => `@${userName}`;
+
+  const users = [
+    {
+      userName: 'pepemunoz_',
+      name: 'Pepe Muñoz',
+      isFollowing: false,
+      urlImage: 'https://img.freepik.com/foto-gratis/luna-fotorrealista-paisaje-abstracto_23-2151158665.jpg'
+    },
+    {
+      userName: 'alvaromg00',
+      name: 'Álvaro Morón',
+      isFollowing: true,
+      urlImage: 'https://p4.wallpaperbetter.com/wallpaper/546/972/22/drive-wallpaper-preview.jpg'
+    }
+  ]
+
   return (
     <>
-      <TwitterFollowCard
-        userName="@inmamunozz_"
-        name="Inma Muñoz"
-        urlImage="https://pbs.twimg.com/profile_images/1698868639649177600/_yKNVwqd_400x400.jpg"
-        isFollowing={false}
-      />
-      <TwitterFollowCard
-        userName="@alvaromg00"
-        name="Alvaro Morón"
-        urlImage="https://p4.wallpaperbetter.com/wallpaper/546/972/22/drive-wallpaper-preview.jpg"
-        isFollowing={true}
-      />
+      {
+        users.map(({userName, name, isFollowing, urlImage}) => {
+          return(
+            <TwitterFollowCard 
+              key={userName}
+              userName={userName}
+              formatUsername={formatUsername}
+              name={name}
+              isFollowing={isFollowing}
+              urlImage={urlImage}
+            />
+          )
+        })
+      }
     </>
   );
 }
