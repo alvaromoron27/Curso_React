@@ -67,7 +67,7 @@ function App() {
                 <Square 
                   key={index}
                   isSelected={value !== null}
-                  onClick={() => handleClick(kindex)}
+                  onClick={() => handleClick(index)}
                 >
                   {value}
                 </Square>
@@ -76,10 +76,10 @@ function App() {
           }
       </section>
       <section className='turn'>
-        <Square isSelected={turn == TURNS.X}>
+        <Square isSelected={turn == TURNS.O}>
           {TURNS.X}
         </Square>
-        <Square isSelected={turn == TURNS.O}>
+        <Square isSelected={turn == TURNS.X}>
           {TURNS.O}
         </Square>
       </section>
