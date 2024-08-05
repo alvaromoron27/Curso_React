@@ -67,7 +67,7 @@ function App() {
                 <Square 
                   key={index}
                   isSelected={value !== null}
-                  onClick={() => handleClick(kindex)}
+                  onClick={() => handleClick(index)}
                 >
                   {value}
                 </Square>
