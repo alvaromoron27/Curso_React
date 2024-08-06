@@ -59,7 +59,7 @@ function App() {
 
   return (
     <main className='board'>
-      <h1>Tic-tac-toeeeee</h1>
+      <h1>Tic-tac-toe</h1>
       <section className="game">
           {
             board.map((value, index) => {
