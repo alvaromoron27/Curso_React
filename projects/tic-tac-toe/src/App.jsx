@@ -39,6 +39,9 @@ const checkWinner = (board) => {
 
 function App() {
 
+  // Modificación en el fork
+const message = "Hello from the fork!";
+
     const [board, setBoard] = useState(Array(9).fill(null));
     const [turn, setTurn] = useState(TURNS.X);
 
