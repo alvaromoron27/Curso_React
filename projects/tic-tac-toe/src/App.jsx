@@ -39,6 +39,8 @@ const checkWinner = (board) => {
 
 function App() {
 
+  // Modificación en el repositorio original
+const message = "Hello from the original repository!";
     const [board, setBoard] = useState(Array(9).fill(null));
     const [turn, setTurn] = useState(TURNS.X);
 
