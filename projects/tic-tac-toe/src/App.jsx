@@ -50,7 +50,10 @@ function App() {
 
       const winner = checkWinner(newBoard);
       if (winner) {
-        alert(`El ganador es: ${winner}`);
+        setTimeout(()=>{
+          alert(`El ganador es: ${winner}`);
+          handleRestart();
+        }, 200)
         return;
       }
 
