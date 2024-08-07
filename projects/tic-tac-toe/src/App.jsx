@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import './App.css';
 import { useState } from "react";
+import cofetti from 'canvas-confetti';
+import confetti from 'canvas-confetti';
 
 const TURNS = {
   X: "x",
@@ -17,6 +19,8 @@ const WINNING_COMBINATIONS = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
+let cont = 0;
 
 const Square = ({children, isSelected, onClick}) => {
   const className = `square ${isSelected ? 'is-selected' : ''}`;
@@ -43,17 +47,28 @@ function App() {
     const [turn, setTurn] = useState(TURNS.X);
 
     const handleClick = (index)=>{
+
       if (board[index]) return;
+      cont++;
       const newBoard = [...board]; // Crear una copia del array
       newBoard[index] = turn;
       setBoard(newBoard);
 
       const winner = checkWinner(newBoard);
       if (winner) {
+        cont = 0;
+        confetti();
         setTimeout(()=>{
           alert(`El ganador es: ${winner}`);
           handleRestart();
         }, 200)
+        return;
+      }else if(cont == 9 && winner == null){
+        cont = 0;
+        setTimeout(()=>{
+          alert(`EMPATE!`);
+          handleRestart();
+        }, 100)
         return;
       }
 
@@ -61,9 +76,9 @@ function App() {
     };
 
     const handleRestart = () => {
-      const emptyArray = new Array(9).fill(null)
-          setBoard(emptyArray);
-          setTurn(TURNS.X)
+      setBoard(Array(9).fill(null))
+      setTurn(TURNS.X)
+      cont == 0;
     };
 
   return (
