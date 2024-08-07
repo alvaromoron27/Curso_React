@@ -39,8 +39,6 @@ const checkWinner = (board) => {
 
 function App() {
 
-  // Modificación en el repositorio original
-const message = "Hello from the original repository!";
     const [board, setBoard] = useState(Array(9).fill(null));
     const [turn, setTurn] = useState(TURNS.X);
 
@@ -57,6 +55,12 @@ const message = "Hello from the original repository!";
       }
 
       setTurn(turn === TURNS.X ? TURNS.O : TURNS.X);
+    };
+
+    const handleRestart = () => {
+      const emptyArray = new Array(9).fill(null)
+          setBoard(emptyArray);
+          setTurn(TURNS.X)
     };
 
   return (
@@ -78,12 +82,15 @@ const message = "Hello from the original repository!";
           }
       </section>
       <section className='turn'>
-        <Square isSelected={turn == TURNS.O}>
+        <Square isSelected={turn == TURNS.X}>
           {TURNS.X}
         </Square>
-        <Square isSelected={turn == TURNS.X}>
+        <Square isSelected={turn == TURNS.O}>
           {TURNS.O}
         </Square>
+      </section>
+      <section>
+        <button id='btn-restart' onClick={() => handleRestart()}>Reiniciar partida</button>
       </section>
     </main>
   );
