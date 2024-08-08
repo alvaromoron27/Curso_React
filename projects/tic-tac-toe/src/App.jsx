@@ -5,9 +5,18 @@ import confetti from "canvas-confetti";
 import { TURNS, WINNING_COMBINATIONS } from "./constants.js";
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState(TURNS.X);
-  const [pulsedCells, setPulsedCells] = useState(0);
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem('board')
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+  });
+  const [turn, setTurn] = useState(()=>{
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage ? turnFromStorage : TURNS.X
+  });
+  const [pulsedCells, setPulsedCells] = useState(()=>{
+    const pulsedCells = window.localStorage.getItem('pulsedCells')
+    return pulsedCells ? parseInt(pulsedCells) : 0
+  });
 
   const checkWinner = (board) => {
     for (let combination of WINNING_COMBINATIONS) {
@@ -23,9 +32,17 @@ function App() {
     if (board[index]) return;
     const newBoard = [...board]; // Crear una copia del array
     newBoard[index] = turn;
-    setBoard(newBoard);
-    setPulsedCells(pulsedCells + 1);
     const winner = checkWinner(newBoard);
+    const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
+    const newPulsedCells = pulsedCells + 1;
+
+    setBoard(newBoard);
+    setTurn(newTurn);
+    setPulsedCells(newPulsedCells);
+
+    window.localStorage.setItem('board', JSON.stringify(newBoard))
+    window.localStorage.setItem('turn', newTurn)
+    window.localStorage.setItem('pulsedCells', newPulsedCells)
 
     if (winner) {
       setPulsedCells(0);
@@ -35,7 +52,9 @@ function App() {
         handleRestart();
       }, 200);
       return;
-    }if (pulsedCells == 8 && winner == null) {
+    }
+    console.log(pulsedCells, winner);
+    if (pulsedCells == 8 && winner == null) {
       setPulsedCells(0);
       setTimeout(() => {
         alert(`EMPATE!`);
@@ -43,13 +62,15 @@ function App() {
       }, 100);
       return;
     }
-    setTurn(turn === TURNS.X ? TURNS.O : TURNS.X);
   };
 
   const handleRestart = () => {
     setBoard(Array(9).fill(null));
     setTurn(TURNS.X);
     setPulsedCells(0);
+    window.localStorage.removeItem('board');
+    window.localStorage.removeItem('turn');
+    window.localStorage.removeItem('pulsedCells');
   };
 
   return (
