@@ -7,7 +7,7 @@ import { TURNS, WINNING_COMBINATIONS } from "./constants.js";
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(TURNS.X);
-  let cont = 0;
+  const [pulsedCells, setPulsedCells] = useState(0);
 
   const checkWinner = (board) => {
     for (let combination of WINNING_COMBINATIONS) {
@@ -21,22 +21,22 @@ function App() {
 
   const handleClick = (index) => {
     if (board[index]) return;
-    cont++;
     const newBoard = [...board]; // Crear una copia del array
     newBoard[index] = turn;
     setBoard(newBoard);
-
+    setPulsedCells(pulsedCells + 1);
     const winner = checkWinner(newBoard);
+
     if (winner) {
-      cont = 0;
+      setPulsedCells(0);
       confetti();
       setTimeout(() => {
         alert(`El ganador es: ${winner}`);
         handleRestart();
       }, 200);
       return;
-    } else if (cont == 9 && winner == null) {
-      cont = 0;
+    }if (pulsedCells == 8 && winner == null) {
+      setPulsedCells(0);
       setTimeout(() => {
         alert(`EMPATE!`);
         handleRestart();
@@ -49,7 +49,7 @@ function App() {
   const handleRestart = () => {
     setBoard(Array(9).fill(null));
     setTurn(TURNS.X);
-    cont == 0;
+    setPulsedCells(0);
   };
 
   return (
