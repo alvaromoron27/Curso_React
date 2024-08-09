@@ -1,0 +1,40 @@
+.oneTwitterFollowCard{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: black;
+    padding: 10px;
+    border-radius: 20px;
+    max-height: 302px;
+    overflow-y: auto;
+}
+
+/* Estilo para el track de la scrollbar */
+.oneTwitterFollowCard::-webkit-scrollbar {
+    width: 12px; /* Ancho de la scrollbar */
+}
+
+/* Estilo para el fondo del track */
+.oneTwitterFollowCard::-webkit-scrollbar-track {
+    background: #444; /* Color de fondo del track */
+    border-radius: 4px; /* Bordes redondeados del track */
+}
+
+/* Estilo para el thumb (parte móvil de la scrollbar) */
+.oneTwitterFollowCard::-webkit-scrollbar-thumb {
+    background-color: #686868; /* Color del thumb */
+    border-radius: 4px; 
+}
+
+/* Estilo adicional para el hover del thumb */
+.oneTwitterFollowCard::-webkit-scrollbar-thumb:hover {
+    background-color: #7c7c7c; /* Cambia de color cuando se hace hover */
+}
+
+.oneTwitterFollowCard-title{
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 10px;
+}

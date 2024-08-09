@@ -4,10 +4,23 @@ html, body {
 
 .container-main {
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     flex-direction: column;
-    gap: 5px;
+}
+
+#titlePage{
+    background-color: rgb(229, 215, 166);
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+.TwitterFollowCards{
+    margin-top: 28vh;
 }

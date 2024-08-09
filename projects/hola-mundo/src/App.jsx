@@ -1,4 +1,5 @@
 import { TwitterFollowCard } from "./TwitterFollowCard";
+import './App.css';
 
 export function App() {
 
@@ -32,11 +33,19 @@ export function App() {
       name: 'Brais Moure',
       isFollowing: false,
       urlImage: 'https://yt3.googleusercontent.com/BrHvTVuz3HnKJx656FpXzm_B8il50fI281AC0PtrE7RgHazzPqmUudw7yUzqmnuFsaCp6YkTEQ=s900-c-k-c0x00ffffff-no-rj'
+    },
+    {
+      id: 5,
+      userName: 'ArtLove_',
+      name: 'Art Love',
+      isFollowing: false,
+      urlImage: 'https://images.joseartgallery.com/100736/what-kind-of-art-is-popular-right-now.jpg'
     }
   ]
 
   return (
-    <>
+    <div className="oneTwitterFollowCard">
+      <p className="oneTwitterFollowCard-title">A quien seguir</p>
       {
         users.map(({id, userName, name, isFollowing, urlImage}) => {
           return(
@@ -51,6 +60,6 @@ export function App() {
           )
         })
       }
-    </>
+    </div>
   );
 }
