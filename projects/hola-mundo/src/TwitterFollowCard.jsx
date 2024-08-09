@@ -3,10 +3,16 @@ import PropTypes from "prop-types";
 import "./TwitterFollowCard.css";
 
 export function TwitterFollowCard({ userName = 'unknown', formatUsername, name, isFollowing, urlImage }) {
-  const [follow, setFollow] = useState(isFollowing);
+
+  const [follow, setFollow] = useState(()=> {
+    const followStorage = JSON.parse(window.localStorage.getItem(`follow_${userName}`));
+    return followStorage ? followStorage : isFollowing
+  });
 
   function handleFollow() {
-    setFollow(!follow);
+    const newFollowState  = !follow;
+    setFollow(newFollowState);
+    window.localStorage.setItem(`follow_${userName}`, JSON.stringify(newFollowState));
   }
 
   function handleImage() {
