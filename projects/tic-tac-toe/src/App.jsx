@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Square } from "./components/square.jsx";
 import confetti from "canvas-confetti";
 import { TURNS, WINNING_COMBINATIONS } from "./constants.js";
+import WinnerModal from './components/winnerModal.jsx';
 
 function App() {
   const [board, setBoard] = useState(() => {
@@ -17,6 +18,7 @@ function App() {
     const pulsedCells = window.localStorage.getItem('pulsedCells')
     return pulsedCells ? parseInt(pulsedCells) : 0
   });
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const checkWinner = (board) => {
     for (let combination of WINNING_COMBINATIONS) {
@@ -48,12 +50,11 @@ function App() {
       setPulsedCells(0);
       confetti();
       setTimeout(() => {
-        alert(`El ganador es: ${winner}`);
+        setModalOpen(true);
         handleRestart();
       }, 200);
       return;
     }
-    console.log(pulsedCells, winner);
     if (pulsedCells == 8 && winner == null) {
       setPulsedCells(0);
       setTimeout(() => {
@@ -97,6 +98,9 @@ function App() {
         <button id="btn-restart" onClick={() => handleRestart()}>
           Reiniciar partida
         </button>
+        <WinnerModal 
+          winner={'x'}
+        />
       </section>
     </main>
   );
