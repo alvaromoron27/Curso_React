@@ -19,6 +19,7 @@ function App() {
     return pulsedCells ? parseInt(pulsedCells) : 0
   });
   const [isModalOpen, setModalOpen] = useState(false);
+  const [winner, setWinner] = useState(null);
 
   const checkWinner = (board) => {
     for (let combination of WINNING_COMBINATIONS) {
@@ -31,44 +32,41 @@ function App() {
   };
 
   const handleClick = (index) => {
-    if (board[index]) return;
-    const newBoard = [...board]; // Crear una copia del array
+    if (board[index] || isModalOpen) return;
+    const newBoard = [...board];
     newBoard[index] = turn;
     const winner = checkWinner(newBoard);
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
-    const newPulsedCells = pulsedCells + 1;
 
     setBoard(newBoard);
     setTurn(newTurn);
-    setPulsedCells(newPulsedCells);
 
     window.localStorage.setItem('board', JSON.stringify(newBoard))
     window.localStorage.setItem('turn', newTurn)
-    window.localStorage.setItem('pulsedCells', newPulsedCells)
 
     if (winner) {
       setPulsedCells(0);
       confetti();
-      setTimeout(() => {
-        setModalOpen(true);
-        handleRestart();
-      }, 200);
+      setWinner(winner);
+      setModalOpen(true);
       return;
-    }
-    if (pulsedCells == 8 && winner == null) {
+    }else if (newBoard.every(currentValue => currentValue != null)) {
       setPulsedCells(0);
-      setTimeout(() => {
-        alert(`EMPATE!`);
-        handleRestart();
-      }, 100);
-      return;
+      setWinner('Empate')
+      setModalOpen(true);
     }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    handleRestart();  // Reiniciar el juego cuando se cierre el modal
   };
 
   const handleRestart = () => {
     setBoard(Array(9).fill(null));
     setTurn(TURNS.X);
     setPulsedCells(0);
+    setWinner(null);
     window.localStorage.removeItem('board');
     window.localStorage.removeItem('turn');
     window.localStorage.removeItem('pulsedCells');
@@ -95,12 +93,13 @@ function App() {
         <Square isSelected={turn == TURNS.O}>{TURNS.O}</Square>
       </section>
       <section>
-        <button id="btn-restart" onClick={() => handleRestart()}>
+        <button id="btn-restart" 
+          onClick={() => handleRestart()}
+          disabled={isModalOpen}
+          >
           Reiniciar partida
         </button>
-        <WinnerModal 
-          winner={'x'}
-        />
+        {isModalOpen && <WinnerModal winner={winner} onclose={closeModal} />}
       </section>
     </main>
   );

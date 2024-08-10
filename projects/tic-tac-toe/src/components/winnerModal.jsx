@@ -1,13 +1,14 @@
 import './winnerModal.css'
 
-function WinnerModal(winner, onclose){
+// eslint-disable-next-line react/prop-types
+function WinnerModal({winner, onclose}){
 
     if (!winner) return null;
 
     return(
         <div className='container-modal'>
-            <p>{winner ? `El ganador es ${winner}` : 'Empate'}</p>
-            <button>Aceptar</button>
+            <p className='infoWinner'>{winner === 'Empate' ? 'Empate' : `El ganador es ${winner}`}</p>
+            <button onClick={onclose}>Aceptar</button>
         </div>
     )
 }

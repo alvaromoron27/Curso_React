@@ -2,4 +2,17 @@
     padding: 20px;
     border: 2px solid gray;
     border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(22, 22, 22);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.infoWinner{
+    font-size: 20px;
 }
