@@ -1,13 +1,12 @@
-
+import FollowMouse from './components/followMouse.jsx'
 import './App.css'
 
 function App() {
-  
 
   return (
-    <div className='container'>
-      <h3>Proyecto 3</h3>
-    </div>
+    <>
+      <FollowMouse />
+    </>
   )
 }
 

@@ -1,7 +1,44 @@
 .container{
     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.titleProyect{
+    display: flex;
+    justify-content: center;
+    height: 7%;
 }
 
 h3{
     color: whitesmoke;
+}
+
+.container-buttonControlMouseFollow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93%;
+    width: 100%;
+}
+
+.buttonControlMouseFollow{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 100px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 7px;
+    color: white;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.buttonControlMouseFollow.active{
+    height: 30px;
+}
+
+.buttonControlMouseFollow:hover{
+    background-color: rgb(25, 128, 146);
+    box-shadow: 1px 1px 18px rgb(25, 128, 146);
 }
